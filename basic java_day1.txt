@@ -1,0 +1,177 @@
+1.Write a program to find the sum of the given series 1+2+3+ . . . . . . (n terms) 
+
+class Solution {
+    public static long seriesSum(int n) {
+        return (long)n*(n+1)/2;
+    }
+}
+
+2.Print numbers from 1 to n without the help of loops.
+Input: n = 10
+Output: 1 2 3 4 5 6 7 8 9 10
+
+class Solution
+{
+    
+  public void printNos(int N)
+    {
+        //Your code here
+        if (N>0){
+            printNos(N-1);
+            System.out.print(N+" ");
+        }
+        
+    }
+}
+
+3.Given an array arr[] of positive integers. Return true if all the array elements are palindrome otherwise, return false.
+
+Examples:
+
+Input: arr[] = [111, 222, 333, 444, 555]
+Output: true
+Explanation:
+arr[0] = 111, which is a palindrome number.
+arr[1] = 222, which is a palindrome number.
+arr[2] = 333, which is a palindrome number.
+arr[3] = 444, which is a palindrome number.
+arr[4] = 555, which is a palindrome number.
+As all numbers are palindrome so This will return true.
+
+class Solution {
+    public static boolean palinArray(int[] arr) {
+        // add code here.
+        for(int num:arr){
+            if(reverse(num)!=num){
+                return false;
+            }
+        }
+        return true;
+    }
+    public static int reverse(int n){
+        int rev=0;
+        while(n>0){
+            int last=n%10;
+            rev=rev*10+last;
+            n/=10;
+        }
+        return rev;
+    }
+}
+
+4.For n = 3 the pattern will be 
+3 3 3 2 2 2 1 1 1
+3 3 2 2 1 1
+3 2 1
+
+class GfG
+{
+    void printPat(int n)
+    {
+        // Your code here
+      
+        int times=n;
+        patternline(n,times); 
+         
+    }
+    
+    public void patternline(int n, int times){
+        if(times==0){
+            return;
+        }
+        
+        for(int ch=n; ch>0; ch--){
+             
+            for(int j=0; j<times; j++){
+                System.out.print(ch+" ");
+            }
+        }
+        System.out.print("$");
+        
+        patternline(n,--times);
+    }
+}
+
+
+5.You are given timings of n meetings in the form of (start[i], end[i]) where start[i] is the start time of meeting i and end[i] is the finish time of meeting i. Return the maximum number of meetings that can be accommodated in a single meeting room, when only one meeting can be held in the meeting room at a particular time. 
+
+Note: The start time of one chosen meeting can't be equal to the end time of the other chosen meeting.
+
+Examples :
+
+Input: n = 6, start[] = [1, 3, 0, 5, 8, 5], end[] =  [2, 4, 6, 7, 9, 9]
+Output: 4
+Explanation: Maximum four meetings can be held with given start and end timings. The meetings are - (1, 2), (3, 4), (5,7) and (8,9)
+
+class Solution {
+    // Function to find the maximum number of meetings that can
+    // be performed in a meeting room.
+    public int maxMeetings(int n, int start[], int end[]) {
+        // add your code here
+        int[][] arr=new int[n][2];
+        for(int i=0;i<n;i++)
+        {
+            arr[i]=new int[]{start[i],end[i]};
+        }
+        
+        // for(int i=0;i<n-1;i++){
+        //     for(int j=0;j<n-i-1;j++){
+        //         if(arr[j][1]>arr[j+1][1]){
+        //             int[] temp=arr[j];
+        //             arr[j]=arr[j+1];
+        //             arr[j+1]=temp;
+        //         }
+        //     }
+        // }
+        
+        Arrays.sort(arr, (a, b) -> Integer.compare(a[1], b[1]));
+        int cnt=1,prev=0;
+        for(int cur=1;cur<n;cur++)
+        {
+           if (arr[prev][1]<arr[cur][0]){
+                cnt++;
+                prev=cur;
+            }
+        }
+     return cnt;   
+    }
+}
+
+6.Given an array arr[ ] of length N consisting cost of N toys and an integer K depicting the amount with you. Your task is to find maximum number of toys you can buy with K amount. 
+
+Example 1:
+
+Input: 
+N = 7 
+K = 50
+arr[] = {1, 12, 5, 111, 200, 1000, 10}
+Output: 4
+Explaination: The costs of the toys 
+you can buy are 1, 12, 5 and 10.
+
+class Solution{
+    static int toyCount(int N, int K, int arr[])
+    {
+        // code here
+        int cnt=0,sum=0;
+        
+        Arrays.sort(arr);
+        for(int num:arr){
+            sum+=num;
+            if(sum<=K){
+                cnt++;
+            }
+            else
+            {
+                return cnt;
+            }
+        }
+        return cnt;
+    }
+
+7.odd or even
+class Solution {
+    static String oddEven(int n) {
+        return ((n&1)==0) ? "even":"odd";
+    }
+}
