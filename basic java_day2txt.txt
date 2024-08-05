@@ -1,0 +1,79 @@
+1.reverse a String
+
+class Solution {
+    static String revStr(String s) {
+        // code here
+         String rev="";
+        for(char ch:s.toCharArray()){
+            rev=ch+rev;
+        }
+        return rev;
+    }
+}
+
+ char[] charArray = s.toCharArray();
+        int n = charArray.length;
+        
+        // Reverse the character array
+        for (int i = 0; i < n / 2; i++) {
+            char temp = charArray[i];
+            charArray[i] = charArray[n - 1 - i];
+            charArray[n - 1 - i] = temp;
+        }
+        
+        // Convert the character array back to a string
+        return new String(charArray);
+
+
+2.anagram
+
+
+class Solution {
+    // Function is to check whether two strings are anagram of each other or not.
+    public static boolean isAnagram(String a, String b) {
+
+        // Your code here
+        if(a.length()!=b.length()){
+            return false;
+        }
+        if (a.equals(b))
+            return true;
+        int[] arr=new int[a.length()];
+        Arrays.fill(arr,1);
+        for(char ch:b.toCharArray()){
+            boolean available=false;
+            for(int i=0;i<a.length();i++){
+                if((ch==a.charAt(i))&&(arr[i]==1))
+                   { arr[i]=0;
+                    available=true;
+                       break;
+                   }
+           }
+           if(available==false)
+                return false;
+        }
+        return true;
+    }
+}
+-----------------------------------------------------
+if (a.length() != b.length()) {
+            return false;
+        }
+
+        // Create a frequency array for characters
+        int[] charCount = new int[26];
+
+        // Increment count for characters in string a and decrement for string b
+        for (int i = 0; i < a.length(); i++) {
+            charCount[a.charAt(i) - 'a']++;
+            charCount[b.charAt(i) - 'a']--;
+        }
+
+        // Check if all counts are zero
+        for (int count : charCount) {
+            if (count != 0) {
+                return false;
+            }
+        }
+
+        return true;
